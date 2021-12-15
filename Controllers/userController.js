@@ -1,6 +1,6 @@
 const jwt = require("jsonwebtoken"); // to generate token
 const bcrypt = require("bcryptjs"); // encrypt password
-const User = require("../models/User");
+const User = require("../Models/User");
 const crudController = require("./crudController");
 const catchAsync = require("../utilities/catchAsync");
 const AppError = require("../utilities/apiError");
@@ -110,7 +110,6 @@ exports.signup = async (req, res) => {
       process.env.JWT_SECRET,
       { expiresIn: "1h" }
     );
-  
 
     res.status(201).json({ result, token });
   } catch (error) {
@@ -137,21 +136,19 @@ exports.updateMe = async (req, res, next) => {
     res.status(200).json({
       status: "success",
       updatedUser,
-
     });
   } catch (error) {
     console.log(error.response.data);
   }
 };
-exports.getAddress=catchAsync(async (req, res, next) => {
-    const user = await User.findById(req.user)
-   // console.log(user)
-    res.status(200).json({
-      status: "success",
-      data:{
-       address: user.address,
-       contactNumber: user.contactNumber
-      }
-
-    });
-})
+exports.getAddress = catchAsync(async (req, res, next) => {
+  const user = await User.findById(req.user);
+  // console.log(user)
+  res.status(200).json({
+    status: "success",
+    data: {
+      address: user.address,
+      contactNumber: user.contactNumber,
+    },
+  });
+});

@@ -1,6 +1,6 @@
-const passport = require('passport')
-const jwt = require('jsonwebtoken')
-const User = require("../models/User");
+const passport = require("passport");
+const jwt = require("jsonwebtoken");
+const User = require("../Models/User");
 const bcrypt = require("bcryptjs");
 
 exports.loginUser = (req, res) => {
@@ -14,7 +14,7 @@ exports.loginUser = (req, res) => {
           return res.status(200).json({ result: user, token });
         }
       });
-    } else return res.status(400).json({ message:err });
+    } else return res.status(400).json({ message: err });
   })(req, res);
 };
 const genToken = (user) => {
@@ -67,4 +67,5 @@ exports.authorizationMiddleware = (req, res, next) => {
       req.user = user.id;
       return next();
     }
-  })(req, res, next);}
+  })(req, res, next);
+};

@@ -4,7 +4,7 @@
 
 // const mongoose = require("mongoose");
 const LocalStrategy = require("passport-local").Strategy;
-const User = require("../../models/User");
+const User = require("../../Models/User");
 const bcrypt = require("bcryptjs");
 
 /**
